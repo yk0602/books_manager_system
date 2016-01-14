@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        meta(chatset="UTF-8")
+        title 注册
+        script(src="/jslibs/angular.min.js")
+        script(src="/jslibs/angular-animate.min.js")
+        script(src="/jslibs/ui-bootstrap-tpls-1.0.3.min.js")
+        link(rel="stylesheet", href="/csslibs/bootstrap.min.css")
+    body(ng-app="registerApp")
+        .container.bg-info
+            .row
+                .col-md-2.col-md-offset-5
+                    h1.text-info.text-center 注册
+            .row
+                .col-md-4
+                .col-md-4
+                    form.form-horizontal(role="form", ng-controller="inputController", action="/register", method="post")
+                        .form-group
+                            label.control-label 用户名
+                            input.form-control(type="text", name="username", placeholder="请输入用户名", required=)
+                        .form-group
+                            label.control-label 密码
+                            input.form-control(type="text", placeholder="请输入密码", name="password", required=)
+                        .form-group
+                            label.control-label 密码重复
+                            input.form-control(type="text", placeholder="请输入上面的密码", required=)
+                        .form-group
+                            label.control-label 邮箱
+                            input.form-control(type="text", placeholder="请输入正确的邮箱",name="email" required=)
+                        .form-group
+                            button.btn.btn-info.center-block(type="submit") 提交

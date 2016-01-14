@@ -1,13 +1,16 @@
 require('coffee-script').register()
 express = require 'express'
 http = require 'http'
-routes = require './routes/index'
+routes = require './routes/router'
 cookieParser = require 'cookie-parser'
+bodyParser = require 'body-parser'
 
 app = express()
 server = http.createServer app
 
 app.use cookieParser()
+app.use bodyParser.json()
+app.use bodyParser.urlencoded(extended:true)
 #view engine setup
 app.set 'views', __dirname + '/views'
 app.set 'view engine', 'jade'

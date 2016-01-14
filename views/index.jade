@@ -2,10 +2,14 @@ doctype html
 html
     head
         meta(chatset="UTF-8")
-        title= 主页
+        title 主页
         script(src="/jslibs/angular.min.js")
         script(src="/jslibs/angular-animate.min.js")
         script(src="/jslibs/ui-bootstrap-tpls-1.0.3.min.js")
         link(rel="stylesheet", href="/csslibs/bootstrap.min.css")
     body
-        h1 Welcome Jade
+        .container
+            .row
+                .col-xs-2.col-xs-offset-5
+                    h1.text-info.text-center 校园市场
+            .row
