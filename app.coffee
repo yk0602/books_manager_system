@@ -11,10 +11,7 @@ server = http.createServer app
 app.use cookieParser()
 app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended:true)
-#view engine setup
-app.set 'views', __dirname + '/views'
-app.set 'view engine', 'jade'
-
+app.use express.static(__dirname + '/views')
 app.use express.static(__dirname + '/public')
 
 app.use '/', routes

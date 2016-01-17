@@ -4,7 +4,8 @@
   "description": "图书管理系统",
   "main": "app.coffee",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "coffee app.coffee"
   },
   "author": "Buddy.Yao",
   "license": "ISC",
@@ -13,7 +14,6 @@
     "coffee-script": "^1.10.0",
     "cookie-parser": "^1.4.1",
     "express": "^4.13.3",
-    "jade": "^1.11.0",
     "mongoose": "^4.3.5"
   }
 }

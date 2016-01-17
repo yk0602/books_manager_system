@@ -1,24 +1,29 @@
 usersModel = require '../models/usersModel'
+fs = require 'fs'
 module.exports =
-  registerGet:(req, res) ->
-    res.render 'register'
-
   registerPost:(req, res) ->
     usersModel.createUser req.body.username, req.body.password, req.body.email, (err, data) ->
       if err
-        res.redirect 301, '/register'
+        res.send {status:'failed'}
       else
-        res.redirect 301, '/login'
+        res.send {status:'succeeded'}
 
-  loginGet:(req, res) ->
-    res.cookie 'user', 'admin', {httpOnly:true}
-    res.render 'login'
+  loginPost:(req, res) ->
+    usersModel.validateUser req.body.email, req.body.password, (err, data) ->
+      if err || !data
+        res.send {status:'failed'}
+      else
+        res.send {status:'succeeded', userName:data.userName}
 
   permissionController:(req, res, next) ->
-    if req.cookies?.user?
+    if req.cookies?.email && req.cookies?.password
       next()
     else
       res.redirect 301, '/login'
 
   indexGet:(req, res) ->
-    res.render 'index'
+    fs.readFile __dirname + 'views/', (err, data) ->
+      if !err
+        res.statusCode 200
+        res.contentType 'text/html'
+        res.send data
