@@ -7,30 +7,28 @@ userSchema = mongoose.Schema
 User = mongoose.model 'User', userSchema
 
 createUser = (username, password, email, cb) ->
-  getUserByEmail email, (err, data) ->
-    if !err && !data
+  User.find()
+  .or [{email:email}, {username:username}]
+  .exec (err, data) ->
+    if !err && data.length is 0
       new User {username:username, password:password, email:email}
       .save (err, user) ->
         if err
-          console.error err
-          cb err, null
+          cb new Error('注册失败1'), null
         else
           cb null, user
-    else if !err && data
-      cb new Error('邮箱已经存在'), null
     else
-      cb err, null
+      cb new Error('注册失败2'), null
 
-getUserByEmail = (email, cb) ->
-  User.findOne 'email':email, (err, user) ->
-    if err
-      console.error err
-      cb err, null
-    else
-      cb null, user
+getUserByEmail = (email, password, cb) ->
+  User.find()
+  .or [{email:email}, {password:password}]
+  .exec (err, data) ->
+    if !err && data
+      cb null, data
 
 validateUser = (email, password, cb) ->
-  User.findOne 'email':email, "password":password, (err, user) ->
+  User.findOne {'email':email, "password":password}, null, null, (err, user) ->
     if err
       console.error err
       cb err, null

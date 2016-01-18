@@ -2,7 +2,8 @@ var app = angular.module('indexApp',['ngRoute']);
 app.config(['$routeProvider',function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl:'/main.html'
+            templateUrl:'/main.html',
+            controller:'mainController'
         })
         .when('/login', {
             templateUrl: '/login.html',

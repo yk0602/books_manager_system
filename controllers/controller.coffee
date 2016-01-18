@@ -4,8 +4,10 @@ module.exports =
   registerPost:(req, res) ->
     usersModel.createUser req.body.username, req.body.password, req.body.email, (err, data) ->
       if err
+        console.error err
         res.send {status:'failed'}
       else
+        console.log '注册成功'
         res.send {status:'succeeded'}
 
   loginPost:(req, res) ->
@@ -13,7 +15,7 @@ module.exports =
       if err || !data
         res.send {status:'failed'}
       else
-        res.send {status:'succeeded', userName:data.userName}
+        res.send {status:'succeeded', username:data.username}
 
   permissionController:(req, res, next) ->
     if req.cookies?.email && req.cookies?.password
