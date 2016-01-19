@@ -14,6 +14,5 @@ app.controller("loginController", function($scope, login) {
     $scope.loginResult = true;
     $scope.login = function() {
         login($scope, $scope.user.email, $scope.user.password);
-        console.log($scope.loginResult)
     };
 });

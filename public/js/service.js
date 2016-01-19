@@ -26,7 +26,7 @@ app.factory('login', function($http, $location, user) {
                 if(data.status === 'failed') {
                     $scope.user={};
                     $scope.loginResult = false;
-                    console.log('登录失败');
+                    console.log('登录失s败');
                 } else {
                     user.username = data.username;
                     $location.path('/');
