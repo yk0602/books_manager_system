@@ -1,10 +1,9 @@
 usersModel = require '../models/usersModel'
+should = require 'should'
 
-#usersModel.getUserByUsername 'yk', (err, data) ->
-#  console.log 'test: ' + data + err
-
-#usersModel.validateUser 'yk0602@qq.com', '123', (err, data) ->
-#  console.log 'test: ' + data
-
-usersModel.createUser '', '123', 'yk0602@qq.com', (err, data) ->
-  console.log err, data
+describe 'usersModel', () ->
+  describe 'test userExistsOrNot', () ->
+    it 'should return true', () ->
+      usersModel.userExistsOrNot 'yk', 'xx'
+      .then (data) ->
+        data.should.be.equal null

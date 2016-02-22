@@ -1,8 +1,14 @@
-mongoose = require 'mongoose'
-mongoose.connect 'mongodb://localhost/college_market'
-db = mongoose.connection
-db.on 'error', console.error.bind(console, 'connection error')
-db.once 'open', () ->
-  console.log 'a MongoDB connection opened success'
+elasticsearch = require 'elasticsearch'
+es_client = new elasticsearch.Client
+  host: 'localhost:9200'
+  log: 'trace'
 
-module.exports = mongoose
+es_client.ping
+  requestTimeout: 5000
+  hello: 'hello elasticsearch!'
+.then () ->
+  console.log 'elasticsearch startup successful!'
+.catch (err) ->
+  console.log console.log 'elasticsearch cluster is down!'
+
+module.exports = es_client
